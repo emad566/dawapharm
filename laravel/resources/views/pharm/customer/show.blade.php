@@ -98,8 +98,9 @@
                     <thead>
                         <tr>
                             <th>اسم المنتج</th>
-                            <th>السعر</th>
                             <th>الكمية</th>
+                            <th>السعر</th>
+                            <th>الخصم</th>
                             <th>الإجمالى</th>
                         </tr>
                     </thead>
@@ -110,14 +111,15 @@
                                 {{$product->p_name}}
                                 @if($product->p_active_ingredient)<span class="activeP">{{$product->p_active_ingredient}}</span>@endif
                             </th>
-                            <th>{{$product->p_price}}</th>
                             <td>{{$product->pivot->amount}}</td>
+                            <th>{{$product->p_price}}</th>
+                            <th>{{$customer->offer->discount}}%</th>
                             <td>{{$product->pivot->amountPrice}}</td>
                         </tr>
                         @endforeach
                         </tr>
                         <tr id="" class="">
-                            <td colspan="3" >الاجمالي</td>
+                            <td colspan="4" >الاجمالي</td>
                             <td>{{$customer->offerTotal}}</td>
                         </tr>
                     </tbody>
@@ -135,8 +137,8 @@
                     <thead>
                         <tr>
                             <th>اسم المنتج</th>
-                            <th>الكمية</th>
                             <th>السعر</th>
+                            <th>الكمية</th>
                             <th>الإجمالى</th>
                         </tr>
                     </thead>
@@ -147,8 +149,8 @@
                                 {{$product->p_name}}
                                 @if($product->p_active_ingredient)<span class="activeP">{{$product->p_active_ingredient}}</span>@endif
                             </th>
-                            <td>{{$product->pivot->amount}}</td>
                             <th>{{$product->p_price}}</th>
+                            <td>{{$product->pivot->amount}}</td>
                             <td>{{$product->pivot->amountPrice}}</td>
                         </tr>
                         @endforeach
