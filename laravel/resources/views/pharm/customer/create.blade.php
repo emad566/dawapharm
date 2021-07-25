@@ -72,7 +72,7 @@ input.invalid {
     @if($isShowPage)
     @include("partials.errors")
     @include("partials.success")
-    <?php $answer=0; ?>
+    <?php $answer = 0;?>
     @if(session()->has('success'))
         <a class="btn btn-primary" style="display:block; width:80%; margin:auto;"  href="{{url('/')}}?p=customerOrder">أضف طلب جديد</a>
     @else
@@ -89,21 +89,12 @@ input.invalid {
             </div>
 
             <div class="panel-body panelBodyForm offerDiv">
-                <div class="form-group{{ $errors->has('offer_id') ? ' has-error' : '' }}">
-                    <label for="offerId">- اختر عرض -</label>
-                    <select required class="form-control" id="offerId" name="offer_id">
-                        <!-- <option value="">- اختر عرض -</option> -->
-                        @foreach($offers as $offer)
-                        <?php $selected = (@$offerSelected->id == $offer->id)? "selected" : "" ?>
-                        <option value="{{ $offer->id }}" {{$selected}}>{{ $offer->offerName }}</option>
-                        @endforeach
-                    </select>
 
-                    @if ($errors->has('offer_id'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('offer_id') }}</strong>
-                    </span>
-                    @endif
+                <div style="text-align: center;">
+                    @foreach($offers as $offer)
+                    <h1>{{ $offer->offerName }}</h1>
+                    @endforeach
+
                 </div>
 
                 <br>
@@ -163,7 +154,7 @@ input.invalid {
                         <tr id="offerTotalTr" class="totalTr" width="100%">
                             <td colspan="1" width="80%" >أجمالي سعر طلبية العرض</td>
                             <td id="tdtotal" colspan="4">
-                                <?php $z = 0; ?>
+                                <?php $z = 0;?>
                                 <input id="offerTotal" readonly class="btnLabel" type="text" name="offerTotal"
                                     value="@if(old('offerTotal')){{ old('offerTotal') }}@else{{$z}}@endif" placeholder="0">
                             </td>
@@ -185,10 +176,6 @@ input.invalid {
                             <th colspan="2" style="text-align: center; background-color: #ccc;">بيانات الدفع </th>
                         </tr>
 
-                                                <tr>
-                                                    <th width="250px">سعر الجمهور (الطلبية)</th>
-                                                    <td><span id="spanOrderPrice">0</span></td>
-                                                </tr>
                         <tr>
                             <th width="250px"> سعر العرض (قبل حساب الشحن)</th>
                             <td><span id="spanOfferPrice">0</span></td>
@@ -274,7 +261,7 @@ input.invalid {
                         <tr id="totalTr" class="totalTr">
                             <td colspan="2"  width="30%">إجمالي  الاكسبير المستبدل</td>
                             <td id="tdtotal" colspan="2">
-                                <?php $z = 0; ?>
+                                <?php $z = 0;?>
                                 <input id="total" readonly class="btnLabel" type="text" name="total"
                                     value="@if(old('total')){{ old('total') }}@else{{$z}}@endif" placeholder="0">
                             </td>
@@ -364,30 +351,30 @@ input.invalid {
 
             <div class="panel-body panelBodyForm">
                 <?php
-                session_start();
-                $fn = rand(rand(1,5),rand(1,5));
-                $sn = rand(rand(1,5), rand(1,5));
-                $ops = [ '+', '×'];
-                $op = rand(0, 1);
-                $op = $ops[$op];
-                $answer = 0;
-                switch($op){
-                    case "+":
-                        $answer = $fn + $sn;
-                        break;
-                    /*
-                    case "-":
-                        $answer = $fn - $sn;
-                        break; */
+session_start();
+$fn = rand(rand(1, 5), rand(1, 5));
+$sn = rand(rand(1, 5), rand(1, 5));
+$ops = ['+', '×'];
+$op = rand(0, 1);
+$op = $ops[$op];
+$answer = 0;
+switch ($op) {
+    case "+":
+        $answer = $fn + $sn;
+        break;
+    /*
+    case "-":
+    $answer = $fn - $sn;
+    break; */
 
-                    case "×":
-                        $answer = $fn * $sn;
-                        break;
-                }
+    case "×":
+        $answer = $fn * $sn;
+        break;
+}
 
-                $_SESSION['answer'] = $answer;
+$_SESSION['answer'] = $answer;
 
-                ?>
+?>
 
                 <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
                     <label class="lightP" for="answer">اكتب ناتج: {{ $sn }} {{ $op }} {{ $fn }} = </label>
