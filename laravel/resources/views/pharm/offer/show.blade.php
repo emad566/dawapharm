@@ -5,14 +5,14 @@
     <title>{{$offer->p_name}}</title>
 @endsection
 
-@section('allContent')   
+@section('allContent')
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading"> 
-            العرض: {{ $offer->p_name }}        
-            <a href="{{ url('pharm/offer/create?p=offer') }}" class="btn btn-primary newRecored pull-left"><i class="fas fa-calendar-plus"></i> أضف جديد</a> 
-            <a href="{{ url('pharm/offer?p=offer') }}" class="btn btn-primary action-btn pull-left"><i class="fas fa-coffee"></i> كل العروض </a>  
-            <a href="{{ url('pharm/offer/'.$offer->id.'/edit?p=offer') }}" class="btn btn-primary action-btn pull-left"><i class="fas fa-edit"></i> تعديل العرض </a>  
+        <div class="panel-heading">
+            العرض: {{ $offer->p_name }}
+            <a href="{{ url('pharm/offer/create?p=offer') }}" class="btn btn-primary newRecored pull-left"><i class="fas fa-calendar-plus"></i> أضف جديد</a>
+            <a href="{{ url('pharm/offer?p=offer') }}" class="btn btn-primary action-btn pull-left"><i class="fas fa-coffee"></i> كل العروض </a>
+            <a href="{{ url('pharm/offer/'.$offer->id.'/edit?p=offer') }}" class="btn btn-primary action-btn pull-left"><i class="fas fa-edit"></i> تعديل العرض </a>
             <a class="btn btn-primary action-btn pull-left" href="#"
             onclick="
                 var result = confirm(' هل ترغب في حذف العرض : {{ $offer->offerName }}');
@@ -28,12 +28,12 @@
                 {{ csrf_field() }}
                 <input type='hidden' name='_method' value='DELETE'>
             </form><!--#delete-form .delete-form -->
-            
+
         </div>
         <div class="panel-body panelBodyForm">
             @include("partials.errors")
             @include("partials.success")
-            <table id="usersTable" class="table table-hover table-striped table-bordered order-column"> 
+            <table id="usersTable" class="table table-hover table-striped table-bordered order-column">
                 <tbody>
 
                     <tr>
@@ -54,7 +54,7 @@
                         <td>{{ $offer->offerMonth }}</td>
                     </tr>
                     <tr>
-                        <th>قيمة العرض</th>                    
+                        <th>قيمة العرض</th>
                         <td>{{ $offer->offerPrice }}</td>
                     </tr>
                     <tr>
@@ -63,7 +63,7 @@
                     </tr>
                     <tr>
                         <th>ExpireTotal</th>
-                        <td>{{ $offer->expireTotal }}</td> 
+                        <td>{{ $offer->expireTotal }}</td>
                     </tr>
 
                     <tr>
@@ -77,9 +77,9 @@
 
                 </tbody>
             </table>
-            
+
             <div class="panel panel-default">
-                <div class="panel-heading">منتجات العرض</div><!-- .panel-body  -->
+                <div class="panel-heading">منتجات العرض ({{$offer->products()->where('offer_product.is_offer', 1)->count()}})</div><!-- .panel-body  -->
                 <div class="panel-body panelBodyForm">
                     <ul style="list-style: none;">
                         @foreach($offer->products()->where('offer_product.is_offer', 1)->orderBy('offer_product.offerPriority', 'ASC')->get() as $product)
@@ -92,9 +92,9 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="panel panel-default">
-                <div class="panel-heading">منتجات الاستبدال</div><!-- .panel-body  -->
+                <div class="panel-heading">منتجات الاستبدال ({{$offer->products()->where('offer_product.is_expired', 1)->count()}})</div><!-- .panel-body  -->
                 <div class="panel-body panelBodyForm">
                     <ul style="list-style: none;">
                         @foreach($offer->products()->where('offer_product.is_expired', 1)->orderBy('products.p_name', 'ASC')->get() as $product)
@@ -107,20 +107,18 @@
                     </ul>
                 </div>
             </div>
-            
-            
+
+
         </div><!-- .panel-body  -->
     </div>
 
-</div>  
+</div>
 @endsection
 
 @section('scripts')
 <script>
     $(document).ready(function(){
-        
+
     })
 </script>
 @endsection
-
-
