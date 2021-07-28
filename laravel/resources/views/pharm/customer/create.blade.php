@@ -117,8 +117,8 @@ input.invalid {
                             <th>اسم المنتج</th>
                             <th style="min-width:10%;">الكمية</th>
                             <th style="min-width:10%;">السعر</th>
-                            <th style="min-width:10%;">الخصم</th>
-                            <th style="min-width:15%;">الإجمالى</th>
+                            <!-- <th style="min-width:10%;">الخصم</th> -->
+                            <th style="min-width:15%;">الإجمالى بعد خصم 20%</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -139,9 +139,9 @@ input.invalid {
 
                                 <input type="hidden" name="offerpPrices[]" value="{{$product->id}}" class="pro_id{{ $product->id }}">
                             </th>
-                            <th>
+                            <!-- <th>
                                 <span id="discount{{$product->id}}" class='discount' value="{{$offer->discount}}">{{$offer->discount}} %</span>
-                            </th>
+                            </th> -->
 
                             <td>
                                 <input  id="offerP{{$product->id}}" readonly="readonly" class="btnLabel offerPAmountVal pro_id{{ $product->id }}"
@@ -152,7 +152,7 @@ input.invalid {
                         @endforeach
 
                         <tr id="offerTotalTr" class="totalTr" width="100%">
-                            <td colspan="1" width="80%" >أجمالي سعر طلبية العرض</td>
+                            <td colspan="1" width="60%" >أجمالي سعر العرض</td>
                             <td id="tdtotal" colspan="4">
                                 <?php $z = 0;?>
                                 <input id="offerTotal" readonly class="btnLabel" type="text" name="offerTotal"
@@ -162,7 +162,7 @@ input.invalid {
 
                         <tr>
                             <th id="winscrollto">ملحوظة</th>
-                            <td colspan="4">  يجب ان يكون الحد الأدني لمنتجات العرض بسعر الجمهور {{ $offerSelected->minPrice }} ج.م.</td>
+                            <td colspan="4">  يجب ان يكون الحد الأدني لسعر العرض بعد الخصم الصيدلي {{ $offerSelected->minPrice }} ج.م.</td>
                         </tr>
 
                     </tbody>
@@ -204,7 +204,7 @@ input.invalid {
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <strong>
-                        عذرا القيمة الإجمالية لأصناف االعرض يجب ان تكون بحد ادني {{$offerSelected->minPrice}}
+                        عذرا إجمالى سعر العرض بعد الخصم الصيدلي يجب ان يكون بحد ادني {{$offerSelected->minPrice}}
                         جنية،
                         الرجاء حاول تغيير الكميات المطلوبة بحيث توافق هذا الشرط.
                     </strong>
@@ -663,7 +663,7 @@ $(document).ready(function() {
                 })
                 $('#nextBtn').attr("disabled", true);
 
-                alert("عذرا القيمة الإجمالية لأصناف االعرض يجب ان تكون بحد ادني {{$offerSelected->minPrice}} ، جنية الرجاء حاول تغيير الكميات المطلوبة بحيث توافق هذا الشرط.")
+                alert("عذرا، يجب ان يكون الحد الأدني لسعر العرض بعد الخصم الصيدلي {{$offerSelected->minPrice}} ، جنية الرجاء حاول تغيير الكميات المطلوبة بحيث توافق هذا الشرط.")
 
             }
         }else if(x[currentTab].getAttribute("id") == "productsInfo"){
