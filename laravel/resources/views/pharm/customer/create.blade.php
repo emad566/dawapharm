@@ -90,10 +90,20 @@ input.invalid {
 
             <div class="panel-body panelBodyForm offerDiv">
 
-                <div style="text-align: center;">
-                    @foreach($offers as $offer)
-                    <h1>{{ $offer->offerName }}</h1>
-                    @endforeach
+                <div class="form-group{{ $errors->has('offer_id') ? ' has-error' : '' }}">
+                    <label for="offerId">العرض الحالى:</label>
+                    <select required class="form-control" id="offerId" name="offer_id">
+                        <!-- <option value="">- اختر عرض -</option> -->
+                        @foreach($offers as $offer)
+                        <?php $selected = (@$offerSelected->id == $offer->id) ? "selected" : ""?>
+                        <option value="{{ $offer->id }}" {{$selected}}>{{ $offer->offerName }}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('offer_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('offer_id') }}</strong>
+                    </span>
+                    @endif
 
                 </div>
 
