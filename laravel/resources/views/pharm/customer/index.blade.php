@@ -45,7 +45,7 @@
             </thead>
 
             <tbody>
-                <?php $i=0; ?>
+                <?php $i = 0;?>
                 @foreach($customers as $customer)
                 <tr>
                     <td><?php echo ++$i; ?></td>
@@ -56,7 +56,7 @@
                     {{-- <td>{{ $customer->title }}
                     </td> --}}
                     <td>{{ $customer->whats }}</td>
-                    <td>{{ ($customer->offerTotal) *.8 }}</td> <!-- Added by Ahmed Suror 10-12-2020 -->
+                    <td>{{ ($customer->offerTotal) }}</td> <!-- Added by Ahmed Suror 10-12-2020 -->
                     <td>{{ $customer->total }}</td>
                     <td>{{ $customer->created_at }}</td>
                     <td>{{$customer->status->sName}}</td>
@@ -70,7 +70,7 @@
                                         event.preventDefault();
                                         document.getElementById('delete-form{{ $customer->id }}').submit();
                                     }
-                
+
                                 "><i class="fas fa-trash-alt delEdit"></i></a>
 
                         <form id='delete-form{{ $customer->id }}' class='delete-form' method='post'

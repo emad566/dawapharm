@@ -31,9 +31,8 @@
                         </tr>
 
                         <tr>
-                            <?php $offerPrice = $customer->offerTotal - ($customer->offerTotal * $customer->offer->discount / 100);?>
                             <th width="250px">سعر العرض</th>
-                            <td>{{ $offerPrice }}</td>
+                            <td>{{ $customer->offerTotal }}</td>
                         </tr>
 
                         <tr>
@@ -43,7 +42,7 @@
 
                         <tr>
                             <th width="250px">إجمالي العرض بمصاريف الشحن</th>
-                            <td>{{ $customer->offer->charge + $offerPrice }}</td>
+                            <td>{{ $customer->offer->charge + $customer->offerTotal }}</td>
                         </tr>
 
                         <tr>
@@ -217,5 +216,3 @@
     })
 </script>
 @endsection
-
-
